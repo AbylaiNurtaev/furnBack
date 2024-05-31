@@ -63,7 +63,7 @@ app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.upda
 
 
 
-app.listen(process.env.PORT || 4444, (err) => {
+app.listen(process.env.PORT, (err) => {
     if(err) {
         return console.log(err);
     }
