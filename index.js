@@ -16,6 +16,7 @@ import * as UserController from './controllers/UserController.js'
 
 
 mongoose.connect(process.env.MONGODB_URI)
+// mongoose.connect('mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log("DB ok"))
 .catch((err) => console.log("DB error:", err))
 
@@ -63,7 +64,7 @@ app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.upda
 
 
 
-app.listen(process.env.PORT || 4444, function(){
+app.listen(process.env.PORT || config.httpPort, function(){
     console.log("Express server listening on port %d in %s mode");
   });
 
