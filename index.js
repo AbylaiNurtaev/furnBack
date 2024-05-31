@@ -15,9 +15,7 @@ import * as PostController from './controllers/PostController.js'
 import * as UserController from './controllers/UserController.js'
 
 
-mongoose.connect(
-    'mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0',
-)
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("DB ok"))
 .catch((err) => console.log("DB error:", err))
 
@@ -65,7 +63,7 @@ app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.upda
 
 
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
     if(err) {
         return console.log(err);
     }
