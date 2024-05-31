@@ -64,7 +64,7 @@ app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.upda
 
 
 app.listen(process.env.PORT || 4444, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+    console.log("Express server listening on port %d in %s mode");
   });
 
 
