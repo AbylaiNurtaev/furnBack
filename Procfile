@@ -1,1 +1,1 @@
-web:node index.js
+web: node furniture_backend/index.js
