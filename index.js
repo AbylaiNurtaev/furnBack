@@ -15,8 +15,8 @@ import * as PostController from './controllers/PostController.js'
 import * as UserController from './controllers/UserController.js'
 
 
-mongoose.connect(process.env.MONGODB_URI)
-// mongoose.connect('mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
+// mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect('mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log("DB ok"))
 .catch((err) => console.log("DB error:", err))
 
@@ -62,10 +62,10 @@ app.delete('/posts/:title', checkAdmin, PostController.remove);
 app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.update);
 
 
+const port = process.env.PORT || 8080
 
-
-app.listen(process.env.PORT || config.httpPort, function(){
-    console.log("Express server listening on port %d in %s mode");
+app.listen(port, function(){
+    console.log("Express server listening on port %d in %s mode", port);
   });
 
 
