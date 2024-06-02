@@ -25,7 +25,7 @@ const successMsg = chalk.bgGreen.white;
 
 
 // mongoose.connect(process.env.MONGODB_URI)
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect('mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
 .then(() => console.log(successMsg("DB ok")))
 .catch((err) => console.log(errorMsg("DB error:", err)))
 
@@ -71,7 +71,7 @@ app.delete('/posts/:title', checkAdmin, PostController.remove);
 app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.update);
 
 
-const port = process.env.PORT
+const port = 3000
 
 app.listen(port, function(){
     console.log(successMsg("listening port:", port));
