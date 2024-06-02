@@ -71,7 +71,7 @@ app.delete('/posts/:title', checkAdmin, PostController.remove);
 app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.update);
 
 
-const port = 3000
+const port = process.env.PORT || 8080
 
 app.listen(port, function(){
     console.log(successMsg("listening port:", port));
