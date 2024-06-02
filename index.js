@@ -2,11 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
 
+import chalk from 'chalk';
+
 import {registerValidator, loginValidator, postCreateValidation} from "./validations.js"
 
 import checkAuth from './utils/checkAuth.js'
 import checkAdmin from './utils/checkAdmin.js';
 import handleValidationErrors from './utils/handleValidationErrors.js';
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 import cors from 'cors'
 // import {PostController, UserController} from './controllers/index.js'
@@ -15,10 +20,14 @@ import * as PostController from './controllers/PostController.js'
 import * as UserController from './controllers/UserController.js'
 
 
+const errorMsg = chalk.bgWhite.redBright;
+const successMsg = chalk.bgGreen.white;
+
+
 // mongoose.connect(process.env.MONGODB_URI)
-mongoose.connect('mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
-.then(() => console.log("DB ok"))
-.catch((err) => console.log("DB error:", err))
+mongoose.connect(process.env.MONGO_URL)
+.then(() => console.log(successMsg("DB ok")))
+.catch((err) => console.log(errorMsg("DB error:", err)))
 
 const app = express();
 
@@ -62,15 +71,11 @@ app.delete('/posts/:title', checkAdmin, PostController.remove);
 app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.update);
 
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT
 
 app.listen(port, function(){
-    console.log("Express server listening on port %d in %s mode", port);
+    console.log(successMsg("listening port:", port));
   });
 
 
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2Y2FhYmM0MGRjYzRiMmQ1ODYwOTUiLCJpYXQiOjE3MTU5MTg4MjcsImV4cCI6MTcxODUxMDgyN30.BwBNsS2bkqdB4GWgb_8XLeBM2N9xa6ta6FPL_0WMBMk
-
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2ZDcwNWIyNzliY2M5MmNlNzhmNTYiLCJpYXQiOjE3MTU5MTg4ODIsImV4cCI6MTcxODUxMDg4Mn0.nkMZ0OkX-ryngBv2ajfq1DxWS0-dOu26TmA9-kdEQ64
