@@ -37,6 +37,11 @@ const PostSchema = new mongoose.Schema({
     imageUrl2: {
         type: String,
         required: true
+    },
+    tone: {
+        type: String,
+        required: true
+
     }
 }, {
     timestamps: true,

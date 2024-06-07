@@ -48,6 +48,7 @@ export const create = async (req, res) => {
             category: req.body.category,
             author: req.body.author,
             style: req.body.style,
+            tone: req.body.tone
         });
 
         const post = await doc.save();
