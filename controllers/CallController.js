@@ -30,3 +30,27 @@ export const sendCall = async(req, res) => {
         })
     }
 }
+
+export const remove = async (req, res) => {
+    const phone = req.body.phone;
+
+    try {
+        const doc = await CallModel.findOneAndDelete({ phone: phone });
+
+
+        if (!doc) {
+            return res.status(404).json({
+                message: "Статья не найдена"
+            });
+        }
+
+        res.json({
+            success: true
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Не удалось удалить статью"
+        });
+    }
+}

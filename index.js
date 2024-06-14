@@ -74,6 +74,7 @@ app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.upda
 
 app.get('/calls', CallController.getAll)
 app.post('/calls', CallController.sendCall)
+app.delete('/calls', CallController.remove)
 
 
 const port = process.env.PORT || 8080
