@@ -18,6 +18,7 @@ import cors from 'cors'
 
 import * as PostController from './controllers/PostController.js'
 import * as UserController from './controllers/UserController.js'
+import * as CallController from './controllers/CallController.js'
 
 
 const errorMsg = chalk.bgWhite.redBright;
@@ -69,6 +70,10 @@ app.get('/posts', PostController.getAll);
 app.post('/posts', checkAdmin , postCreateValidation, PostController.create);
 app.delete('/posts/:title', checkAdmin, PostController.remove);
 app.patch('/posts/:title', checkAdmin, postCreateValidation, PostController.update);
+
+
+app.get('/calls', CallController.getAll)
+app.post('/calls', CallController.sendCall)
 
 
 const port = process.env.PORT || 8080
