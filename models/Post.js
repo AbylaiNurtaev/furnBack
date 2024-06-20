@@ -26,16 +26,8 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    imageUrl: {
-        type: String,
-        required: true
-    },
-    imageUrl1: {
-        type: String,
-        required: true
-    },
-    imageUrl2: {
-        type: String,
+    images: {
+        type: [String],
         required: true
     },
     tone: {

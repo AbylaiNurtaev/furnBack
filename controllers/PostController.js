@@ -38,29 +38,36 @@ export const remove = async (req, res) => {
 
 export const create = async (req, res) => {
     try {
+        const { title, text, images, price, category, author, style, tone } = req.body;
+
+        if (images.length < 3 || images.length > 7) {
+            return res.status(400).json({
+                message: "Товар должен содержать от 3 до 7 фотографий"
+            });
+        }
+
         const doc = new PostModel({
-            title: req.body.title,
-            text: req.body.text,
-            imageUrl: req.body.imageUrl,
-            imageUrl1: req.body.imageUrl1,
-            imageUrl2: req.body.imageUrl2,
-            price: req.body.price,
-            category: req.body.category,
-            author: req.body.author,
-            style: req.body.style,
-            tone: req.body.tone
+            title,
+            text,
+            images,
+            price,
+            category,
+            author,
+            style,
+            tone
         });
 
         const post = await doc.save();
 
-        res.json(post)
+        res.json(post);
     } catch (error) {
         console.log(error);
         res.status(500).json({
             message: "Не удалось создать товар"
-        })
+        });
     }
 }
+
 
 export const update = async (req, res) => {
     try {
