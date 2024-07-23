@@ -25,8 +25,7 @@ const errorMsg = chalk.bgWhite.redBright;
 const successMsg = chalk.bgGreen.white;
 
 
-// mongoose.connect(process.env.MONGODB_URI)
-mongoose.connect('mongodb+srv://krutyev6:wwwwww@cluster0.ab7jy0l.mongodb.net/blog?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log(successMsg("DB ok")))
 .catch((err) => console.log(errorMsg("DB error:", err)))
 

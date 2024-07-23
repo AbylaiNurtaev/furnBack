@@ -27,7 +27,7 @@ const PostSchema = new mongoose.Schema({
         required: true
     },
     images: {
-        type: [String],
+        type: [String], 
         required: true
     },
     tone: {

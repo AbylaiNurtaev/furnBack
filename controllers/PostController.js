@@ -14,7 +14,7 @@ export const getAll = async (req, res) => {
 
 export const remove = async (req, res) => {
     const postTitle = req.params.title;
-
+    console.log(`"${postTitle}"`);
     try {
         const doc = await PostModel.findOneAndDelete({ title: postTitle });
 
@@ -24,6 +24,7 @@ export const remove = async (req, res) => {
                 message: "Статья не найдена"
             });
         }
+        console.log(doc);
 
         res.json({
             success: true
